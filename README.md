@@ -1,2 +1,3 @@
 # present-time
 I was re-learning JavaScript and decided to mess around with a site that tells the current date and time. It's a super simple idea, but it turned out being a lot more work than I thought. Aesthetically, it's based off of an anime called Serial Experiments Lain.
+I still have a long way to go when it comes to JavaScript--I learned after the fact that I'm guilty of a lot of bad JavaScript practices here--but that's sort of the point of doing these projects. I'll work on separating my concerns and simplifying my code. At the end of the day, I was mostly focused on finishing it and making it actually work.
