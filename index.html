@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Present Time</title>
+
+<!--FONTS-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
+
+
+  <style type="text/css">
+
+    body {
+      background-color: black;
+    }
+
+    a {
+      color: yellow;
+    }
+
+    #link {
+/*      outline: 1px solid white;*/
+      color: white;
+      margin-top: 20px;
+      font-size: 1.3rem;
+      font-family: 'Newsreader', serif;
+      text-align: center;
+    }
+
+    #buttonDiv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: white;
+
+/*      background-color: yellow;*/
+    }
+
+    #playButton {
+      font-family: 'Newsreader', serif;
+      font-size: 2.3rem;
+    }
+      
+    #dayParagraph, #timeParagraph {
+      display: block;
+      font-size: 2rem;
+    }
+
+    #video {
+      display: none;
+    }
+
+    #center {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #tv {
+      height: 600px;
+      width: 600px;
+      max-width: 600px;
+      background-color: black;
+      font-family: 'Tektur', cursive;
+      color: #FC5E3B;
+      overflow: hidden;
+    }
+
+    #static {
+      max-width: 1000px;
+      width: 1000px;
+      position: relative;
+      right: 150px;
+      display: none;
+    }
+
+    #textDiv {
+      display: none;
+    }
+
+    #firstLine, #secondLine {
+      display: flex;
+    }
+
+    #blinkyBoxDay, #blinkyBoxTime {
+      box-shadow: 10px 5px #F4927D;
+    }
+
+    #blinkyBoxDay {
+      position: relative;
+      top: 130px;
+      left: 35px;
+      width: 30px;
+      height: 50px;
+      background-color: #FC5E3B;
+    }
+
+    #dayParagraph {
+      position: relative;
+      top: 100px;
+      left: 30px;
+    }
+
+    #blinkyBoxTime {
+      display: none;
+      position: relative;
+      top: 430px;
+      left: 175px;
+      width: 30px;
+      height: 50px;
+      background-color: #FC5E3B;
+    }
+
+    #timeParagraph {
+      position: relative;
+      top: 400px;
+      left: 170px;
+    }
+
+    @media (max-width: 599px) {
+      #tv {
+        width: 400px;
+        height: 400px;
+      }
+
+      #dayParagraph, #timeParagraph {
+        font-size: 1.6rem;
+      }
+
+      #dayParagraph {
+        position: relative;
+        top: 50px;
+        left: 30px;
+      }
+
+      #blinkyBoxDay {
+        top: 80px;
+        left: 35px;
+        width: 20px;
+        height: 30px;
+        }
+
+      #timeParagraph {
+        top: 260px;
+        left: 70px;
+      }
+
+      #blinkyBoxTime {
+        top: 290px;
+        left: 75px;
+        width: 20px;
+        height: 30px;
+      }
+
+      #static {
+        max-width: 800px;
+        width: 800px;
+        position: relative;
+        right: 150px;
+      }
+
+    }
+
+    @media (max-width: 400px) {
+      #tv {
+        width: 300px;
+        height: 300px;
+      }
+
+      #dayParagraph, #timeParagraph {
+        font-size: 1.3rem;
+      }
+
+      #dayParagraph {
+        position: relative;
+        top: 40px;
+        left: 20px;
+      }
+
+      #blinkyBoxDay {
+        top: 65px;
+        left: 25px;
+        width: 15px;
+        height: 22px;
+        }
+
+      #timeParagraph {
+        top: 200px;
+        left: 30px;
+      }
+
+      #blinkyBoxTime {
+        top: 225px;
+        left: 35px;
+        width: 15px;
+        height: 22px;
+      }
+
+      #static {
+        max-width: 700px;
+        width: 700px;
+        position: relative;
+        right: 150px;
+      }
+
+    }
+
+    /*So I think I want to be able to detect when the hour is single- or double-digit so I can properly adjust the spacing relative to the right edge of the box.*/
+
+    
+
+  </style>
+
+</head>
+
+<body>
+
+<div id="center">
+
+  <div id="tv">
+
+    <img id="static" src="./assets/img/static.gif">
+
+    <div id="buttonDiv">
+      <div id="playButton" onclick="start();">Clicky.</div>
+    </div>
+
+    
+
+    <div id="textDiv">
+
+      <div id="firstLine">
+        <p id="dayParagraph"></p>
+        <div id="blinkyBoxDay"></div>
+      </div>
+
+      <div id="secondLine">
+        <p id="timeParagraph"></p>
+        <div id="blinkyBoxTime"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="link">
+    <p><a href="https://youtu.be/JlBLcLdTYr4" target="_">This</a> is where the audio's from.</p>
+    <p><a href="https://tenor.com/es-MX/view/blue-background-background-gif-25021990" target="_">Blue static gif</a></p>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+// Okay, listen. I realize it's super ugly to define all of these functions and variables under one big function called "start", but it's only because I realized--after writing ALL this code--that the date wasn't updating in real time because I defined it as a global variable. It made it so it'd only update every time I loaded the page. 
+
+// I knew that I wanted it to update every time I clicked the start button and ran the "start" function, but I couldn't just move the date variables into the function because that'd break everything. So I just took the entire script and stuck it under one disgusting function. It worked. I'm still learning.
+
+// Also, I know that it still doesn't ACTUALLY update in real time--only every time I click the button--but I'm tired of this project. It's good enough for me.
+
+function start() {
+
+  var audio = new Audio("./assets/sound/voiceClipShort.mp3");
+
+  function dayBoxBlink() {
+  blinkDay = setInterval(function () {
+    element = document.querySelector("#blinkyBoxDay");
+    element.style.opacity = (element.style.opacity == 1 ? 0 : 1);
+  }, 500);
+  } 
+
+  function timeBoxBlink() {
+    blinkTime = setInterval(function () {
+      element = document.querySelector("#blinkyBoxTime");
+      element.style.opacity = (element.style.opacity == 1 ? 0 : 1);
+    }, 500);
+  } 
+
+  // I could not for the life of me figure out the blinking loop, so I borrowed the above code from knrz on stackoverflow.
+
+  var date = new Date();
+  // I got this stuff from w3schools.
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var year = date.getFullYear();
+  var i = 0;
+  var dayTxt = "Present day: " + month + "/" + day + "/" + year;
+  var speed = 50; 
+
+  function typeDay() {  
+
+      if (i < dayTxt.length) {
+        document.getElementById("dayParagraph").innerHTML += dayTxt.charAt(i);
+        i++;
+        setTimeout(typeDay, speed);
+    };
+
+  }
+
+  function presentDay() {
+    document.getElementById("dayParagraph").style.display = "block";
+    clearInterval(blinkDay);
+    document.getElementById("blinkyBoxDay").style.opacity = 1;
+    typeDay();
+    setTimeout(function() {
+      dayBoxBlink();
+    }, 900);
+    setTimeout(function() {
+      document.getElementById("dayParagraph").style.display = "none";
+      document.getElementById("blinkyBoxDay").style.display = "none";
+      clearInterval(blinkDay);
+    }, 2600);
+
+  }
+
+  var hour = date.getHours() % 12; 
+  var mins = date.getMinutes();
+  var j = 0;
+
+  function calcHours() {
+
+    if (date.getHours() < 12) {
+      var suffix = "AM";
+    }
+
+    else {
+      var suffix = "PM";
+    };
+
+    return suffix;
+
+  }
+
+  function moduloFix() {
+
+    if (hour == 0) {
+      hour = 12;
+    };
+  }
+
+  //Above. The time is converted to 12hr format with a modulo (see line 190). The problem was that whenever it hit 12pm, it'd return the number 0 (since 12 modulo 12 is zero). This function fixes that! I hope!
+
+
+  function calcMins() {
+
+    if (mins < 10) {
+      var timeTxt = "Present time: " + hour + ":" + "0" + mins + " " + calcHours();
+    }
+
+    else {
+      var timeTxt = "Present time: " + hour + ":" + mins + " " + calcHours();
+    };
+
+    return timeTxt;
+
+  }
+
+  // var timeTxt = "Present time: " + hour + ":" + zero + mins + " " + calcHours();
+
+  function typeTime() {
+
+    moduloFix();
+    calcHours();
+    calcMins();
+
+    if (j < calcMins().length) {
+      document.getElementById("timeParagraph").innerHTML += calcMins().charAt(j);
+      j++;
+      setTimeout(typeTime, speed);
+    };
+
+  }
+
+
+  function presentTime() {
+
+    clearInterval(blinkTime);
+    document.getElementById("timeParagraph").style.display = "block";
+    document.getElementById("blinkyBoxTime").style.display = "block";
+    document.getElementById("blinkyBoxTime").style.opacity = 1;
+    typeTime();
+    setTimeout(function () {
+      timeBoxBlink()
+    }, 900);
+    setTimeout(function () {
+      document.getElementById("timeParagraph").style.display = "none";
+      document.getElementById("blinkyBoxTime").style.display = "none";
+      clearInterval(blinkTime);
+      showStatic();
+    }, 2900);
+
+  }
+
+  function showStatic () {
+
+    document.getElementById("static").style.display = "block";
+
+  }
+
+  function hideStatic() {
+
+    document.getElementById("static").style.display = "none";
+
+  }
+
+  function resetDay() {
+
+    i = 0;
+    document.getElementById("dayParagraph").innerHTML = "";
+    document.getElementById("blinkyBoxDay").style.display = "block";
+
+  }
+
+  function resetTime() {
+
+    j = 0;
+    document.getElementById("timeParagraph").innerHTML = "";
+
+  }
+
+  //Here's where the actual "start" function starts.
+
+  document.getElementById("buttonDiv").style.display = "none";
+  document.getElementById("tv").style.backgroundColor = "white";
+  document.getElementById("textDiv").style.display = "block";
+  audio.play();
+  showStatic();
+  dayBoxBlink();
+  timeBoxBlink();
+  setTimeout(hideStatic, 1000);
+  setTimeout(presentDay, 2000);
+  setTimeout(presentTime, 4700);
+  audio.addEventListener('ended', (event) => {
+    hideStatic();
+    resetDay();
+    resetTime();
+    document.getElementById("tv").style.backgroundColor = "black";
+    document.getElementById("buttonDiv").style.display = "flex";
+  });
+
+}
+
+
+</script>
+
+</body>
+
+</html>
